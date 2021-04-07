@@ -99,7 +99,7 @@ export default {
         bottomRightCorner
       } = location
       ctx.lineWidth = 2
-      ctx.strokeStyle = '#ffa6b0'
+      ctx.strokeStyle = '#dc2626'
       ctx.beginPath()
       ctx.moveTo(topLeftCorner.x, topLeftCorner.y)
       ctx.lineTo(bottomLeftCorner.x, bottomLeftCorner.y)
