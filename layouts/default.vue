@@ -34,17 +34,6 @@ html {
   margin: 0;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.4s ease-in-out;
-}
-
-.fade-enter,
-.fade-leave-active,
-.fade-leave-to {
-  opacity: 0;
-}
-
 .absolute.center {
   top: 50%;
   left: 50%;

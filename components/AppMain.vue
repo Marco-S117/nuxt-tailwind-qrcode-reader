@@ -1,6 +1,6 @@
 <template>
-  <main class="flex items-center justify-center px-4 text-gray-900">
-    <nuxt />
+  <main class="text-gray-900">
+    <nuxt class="px-4 pt-6 pb-24" />
   </main>
 </template>
 

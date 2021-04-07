@@ -1,44 +1,48 @@
 <template>
-  <div>
-    <div class="scanner-container border-4 border-red-600 rounded-xl">
-      <qrcode-stream
-        v-if="!isDestroyed"
-        :track="paintTrack"
-        :camera="camera"
-        @init="onScannerInit"
-        @decode="onScannerDecode"
-      >
-        <transition name="fade" mode="out-in" appear>
-          <div
-            v-if="isLoading"
-            class="bg-white h-full w-full rounded-xl"
-          >
-            <qr-code class="w-full h-full opacity-80" />
+  <div class="h-full w-full">
+    <h1 class="text-3xl text-center uppercase text-red-600">Home Page</h1>
+    <h2 class="text-md text-center uppercase mb-12">Lorem ipsum dolor sit amet</h2>
+    <div class="t-content flex items-center justify-center">
+      <div class="scanner-container border-4 border-red-600 rounded-xl">
+        <qrcode-stream
+          v-if="!isDestroyed"
+          :track="paintTrack"
+          :camera="camera"
+          @init="onScannerInit"
+          @decode="onScannerDecode"
+        >
+          <transition name="fade" mode="out-in" appear>
+            <div
+              v-if="isLoading"
+              class="bg-white h-full w-full rounded-xl"
+            >
+              <qr-code class="w-full h-full opacity-80" />
+            </div>
+            <div v-else-if="!!scannedUrl" class="result">
+              <button
+                @click="scanAgain"
+                class="cta secondary"
+              >
+                Scan Again
+              </button>
+              <a
+                :href="scannedUrl"
+                target="_blank"
+                class="cta"
+              >
+                Open Url
+              </a>
           </div>
-          <div v-else-if="!!scannedUrl" class="result">
-            <button
-              @click="scanAgain"
-              class="cta secondary"
-            >
-              Scan Again
-            </button>
-            <a
-              :href="scannedUrl"
-              target="_blank"
-              class="cta"
-            >
-              Open Url
-            </a>
-        </div>
-        </transition>
-      </qrcode-stream>
-      <button
-        v-if="isErrored"
-        @click="reloadScanner()"
-        class="cta mt-4 mx-auto"
-      >
-        Reload
-      </button>
+          </transition>
+        </qrcode-stream>
+        <button
+          v-if="isErrored"
+          @click="reloadScanner()"
+          class="cta mt-4 mx-auto"
+        >
+          Reload
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -126,8 +130,8 @@ export default {
 
 <style scoped>
 .scanner-container {
-  width: 350px;
-  height: 350px;
+  width: 44vh;
+  height: 44vh;
 }
 
 >>> .qrcode-stream-camera,
