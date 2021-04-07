@@ -48,6 +48,8 @@
 </template>
 
 <script>
+import { setCookie } from '@/utils/cookies/ManageCookies'
+
 export default {
 
   data () {
@@ -62,6 +64,7 @@ export default {
   },
 
   methods: {
+    setCookie,
     async onScannerInit (promise) {
       this.isLoading = true
       try {
@@ -90,6 +93,7 @@ export default {
     },
     onScannerDecode (url) {
       if (url) {
+        this.setCookie(new Date().getTime(), url, 7)
         this.$nuxt.$emit('show-notification', { msg: 'Scanned successfully', type: 'success' })
         this.scannedUrl = url
         this.camera = 'off'
