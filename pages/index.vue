@@ -1,7 +1,7 @@
 <template>
-  <div class="h-full w-full">
-    <h1 class="text-3xl text-center uppercase text-red-600">Home Page</h1>
-    <h2 class="text-md text-center uppercase mb-12">Lorem ipsum dolor sit amet</h2>
+  <div>
+    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600">Scan</h1>
+    <h2 class="sticky top-28 pb-4 bg-white text-xl text-md text-center italic mb-12">Capture the code</h2>
     <div class="t-content flex items-center justify-center">
       <div class="scanner-container border-4 border-red-600 rounded-xl">
         <qrcode-stream
@@ -18,30 +18,28 @@
             >
               <qr-code class="w-full h-full opacity-80" />
             </div>
-            <div v-else-if="!!scannedUrl" class="result">
-              <button
+            <div v-else-if="isErrored || !!scannedUrl" class="result">
+              <cta
+                v-if="isErrored"
+                @click="reloadScanner()"
+                label="Reload"
+                :isBtn="true"
+              />
+              <cta
+                v-if="!!scannedUrl"
                 @click="scanAgain"
-                class="cta secondary"
-              >
-                Scan Again
-              </button>
-              <a
-                :href="scannedUrl"
-                target="_blank"
-                class="cta"
-              >
-                Open Url
-              </a>
+                label="Scan Again"
+                :isBtn="true"
+                :secondary="true"
+              />
+              <cta
+                v-if="!!scannedUrl"
+                label="Open Url"
+                :to="scannedUrl"
+              />
           </div>
           </transition>
         </qrcode-stream>
-        <button
-          v-if="isErrored"
-          @click="reloadScanner()"
-          class="cta mt-4 mx-auto"
-        >
-          Reload
-        </button>
       </div>
     </div>
   </div>
@@ -49,9 +47,8 @@
 
 <script>
 import { setCookie } from '@/utils/cookies/ManageCookies'
-
 export default {
-
+  name: 'HomePage',
   data () {
     return {
       camera: 'auto',
@@ -62,7 +59,6 @@ export default {
       errorMsg: null
     }
   },
-
   methods: {
     setCookie,
     async onScannerInit (promise) {

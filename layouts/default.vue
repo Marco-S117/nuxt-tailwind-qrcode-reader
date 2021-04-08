@@ -1,11 +1,27 @@
 <template>
-  <div class="fixed w-full h-full overflow-y-auto overflow-x-hidden bg-gray-100 text-gray-100">
-    <app-header />
-    <app-main />
-    <app-footer />
-    <app-notification />
+  <div ref="app" class="fixed w-full h-full overflow-y-auto overflow-x-hidden bg-gray-400 text-gray-100">
+    <div class="w-full min-h-full h-auto max-w-3xl mx-auto bg-white">
+      <app-header />
+      <app-drawer />
+      <app-main />
+      <app-footer />
+      <app-notification />
+    </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'DefaultTemplate',
+  watch: {
+    $route (to, from) {
+      setTimeout(() => {
+        this.$refs.app.scrollTo(0, 0)
+      }, 300)
+    }
+  }
+}
+</script>
 
 <style>
 html {
@@ -25,6 +41,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
@@ -32,28 +49,5 @@ html {
 *::after {
   box-sizing: border-box;
   margin: 0;
-}
-
-.absolute.center {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  text-transform: uppercase;
-  width: 120px;
-  height: 34px;
-  color: #fff;
-  background-color: rgba(220, 38, 38, 1);
-  border-radius: 0.5em;
-}
-
-.cta.secondary {
-  background-color: rgba(17, 24, 39, 1);
 }
 </style>
