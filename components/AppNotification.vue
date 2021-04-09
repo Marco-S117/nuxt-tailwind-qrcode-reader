@@ -53,6 +53,7 @@ export default {
   bottom: 100px;
   right: 50%;
   transform: translateX(50%);
+  z-index: 50;
 }
 
 .notify.error {

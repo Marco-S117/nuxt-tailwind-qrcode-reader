@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600">Scan</h1>
-    <h2 class="sticky top-28 pb-4 bg-white text-xl text-md text-center italic mb-12">Capture the code</h2>
+    <h2 class="ticky top-28 pb-4 bg-white text-lg text-center italic mb-12">Capture the code</h2>
     <div class="t-content flex items-center justify-center">
       <div class="scanner-container border-4 border-red-600 rounded-xl">
         <qrcode-stream
@@ -52,6 +52,7 @@ export default {
   data () {
     return {
       camera: 'auto',
+      torchActive: false,
       isDestroyed: false,
       isLoading: false,
       isErrored: false,
@@ -59,13 +60,21 @@ export default {
       errorMsg: null
     }
   },
+  mounted () {
+    this.$nuxt.$on('toggle-option', (option) => {
+      console.log('toggle option:', option)
+    })
+  },
   methods: {
     setCookie,
     async onScannerInit (promise) {
       this.isLoading = true
       try {
-        await promise
+        const { capabilities } = await promise
+        console.log(capabilities)
+        if (!capabilities.torch) this.$nuxt.$emit('disable-option', 'scan', 'Flashlight')
       } catch (error) {
+        console.log(error)
         if (error.name === 'NotAllowedError') {
           this.errorMsg = 'Please grant camera access permisson'
         } else if (error.name === 'NotFoundError') {

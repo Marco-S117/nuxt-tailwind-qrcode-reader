@@ -55,7 +55,7 @@
 
 .drawer-enter-active .content,
 .drawer-leave-active .content {
-  transition: opacity 0.3s ease-in-out, width 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
   transition-delay: 0.15s;
 }
 
@@ -69,12 +69,10 @@
 }
 
 .drawer-enter .content {
-  opacity: 0;
-  width: 0;
+  transform: translateX(-100%);
 }
 
 .drawer-leave-to .content {
-  opacity: 0;
-  width: 0;
+  transform: translateX(-100%);
   transition-delay: 0s;
 }

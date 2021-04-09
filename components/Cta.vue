@@ -7,12 +7,14 @@
     :class="{
       'bg-red-600': (primary && !secondary) ? true : false,
       'bg-gray-600': secondary,
-      'small': small
+      'small': small,
+      'squared': squared,
+      'disabled': disabled
     }"
-    class="cta"
+    class="cta transition duration-300"
   >
     <slot v-if="!!label">{{ label }}</slot>
-    <component v-if="!!icon" :is="iconSvg" />
+    <component v-if="!!icon" :is="iconSvg" class="transition duration-300" />
   </component>
 </template>
 
@@ -27,7 +29,9 @@ export default {
     primary: { type: Boolean, default: true },
     secondary: { type: Boolean, default: false },
     small: { type: Boolean, default: false },
-    icon: { type: String }
+    squared: { type: Boolean, default: false },
+    icon: { type: String },
+    disabled: { type: Boolean }
   },
   computed: {
     iconSvg () {
@@ -55,5 +59,14 @@ export default {
   width: 48px;
   height: 28px;
   font-size: 12px;
+}
+
+.squared {
+  width: 36px;
+  height: 36px;
+}
+
+.cta.disabled {
+  background-color: #6e6e6e;
 }
 </style>

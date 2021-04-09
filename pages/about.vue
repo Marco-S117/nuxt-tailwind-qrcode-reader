@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600">About</h1>
-    <h2 class="sticky top-28 pb-4 bg-white text-xl border-b-2 border-red-600 text-md text-center italic mb-12">Useful informations</h2>
-    <p class="t-content text-sm">
+    <h2 class="sticky top-28 pb-4 bg-white text-lg text-center italic mb-12 shadow-lg">Useful informations</h2>
+    <p class="t-content text-sm px-4">
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id possimus aut nihil, reiciendis dolorem corrupti tempore, autem consectetur, sint sit maiores? Corrupti labore, recusandae facilis mollitia fuga commodi perspiciatis odio.
       Laborum repellendus itaque fuga impedit ratione, illum vero iusto cumque nemo nihil dolorum libero quos. Ipsum facilis amet voluptate exercitationem minus unde suscipit aliquid voluptatibus provident! Placeat exercitationem adipisci fugiat.
       Alias voluptates distinctio tempora non reiciendis natus eius mollitia rerum consequuntur repudiandae? Quasi, vel esse illo, id ut error tempore alias magni delectus nobis dolore! Assumenda vitae nesciunt incidunt magni!
