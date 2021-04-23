@@ -718,7 +718,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 .red-line {
   position: absolute;
   top: 4%;
@@ -728,6 +728,7 @@
   height: 4px;
   border-radius: 0.75em;
   background-color: rgba(220, 38, 38, 1);
+  box-shadow: inset 0 0 0.5em rgba(220, 38, 38, 1), 0 0 0.5em rgba(220, 38, 38, 0.8);
 
   animation: scan 3s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }

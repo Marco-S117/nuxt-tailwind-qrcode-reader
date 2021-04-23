@@ -8,6 +8,7 @@
           v-if="!isDestroyed"
           :track="paintTrack"
           :camera="camera"
+          :torch="isTorchActive"
           @init="onScannerInit"
           @decode="onScannerDecode"
         >
@@ -52,7 +53,7 @@ export default {
   data () {
     return {
       camera: 'auto',
-      torchActive: false,
+      isTorchActive: false,
       isDestroyed: false,
       isLoading: false,
       isErrored: false,
@@ -62,7 +63,7 @@ export default {
   },
   mounted () {
     this.$nuxt.$on('toggle-option', (option) => {
-      console.log('toggle option:', option)
+      if (option === 'Torch') this.isTorchActive = !this.isTorchActive
     })
   },
   methods: {
@@ -71,27 +72,12 @@ export default {
       this.isLoading = true
       try {
         const { capabilities } = await promise
-        console.log(capabilities)
-        if (!capabilities.torch) this.$nuxt.$emit('disable-option', 'scan', 'Flashlight')
+        if (!capabilities.torch) this.$nuxt.$emit('disable-option', 'camera', 'Torch')
       } catch (error) {
-        console.log(error)
-        if (error.name === 'NotAllowedError') {
-          this.errorMsg = 'Please grant camera access permisson'
-        } else if (error.name === 'NotFoundError') {
-          this.errorMsg = 'No camera found'
-        } else if (error.name === 'NotSupportedError') {
-          this.errorMsg = 'Secure context required (HTTPS, localhost)'
-        } else if (error.name === 'NotReadableError') {
-          this.errorMsg = 'Is the camera already in use?'
-        } else if (error.name === 'OverconstrainedError') {
-          this.errorMsg = 'Installed cameras are not suitable'
-        } else if (error.name === 'StreamApiNotSupportedError') {
-          this.errorMsg = 'Device or browser not supported'
-        } else {
-          this.errorMsg = error.name
-        }
+        this.errorMsg = error.message
         this.isErrored = true
         this.$nuxt.$emit('show-notification', { msg: this.errorMsg, type: 'error' })
+        this.$nuxt.$emit('disable-option', 'camera', 'Torch')
       } finally {
         this.isLoading = false
       }
@@ -132,6 +118,11 @@ export default {
     scanAgain () {
       this.camera = 'auto'
       this.scannedUrl = null
+    }
+  },
+  watch: {
+    isLoading (value) {
+      value ? this.$nuxt.$loading.start() : this.$nuxt.$loading.finish()
     }
   }
 }

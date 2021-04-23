@@ -6,14 +6,6 @@
 
 <script>
 export default {
-  name: 'AppMain',
-  methods: {
-    beforeEnter (e) {
-      console.log(e, 'before enter')
-    },
-    beforeLeave (e) {
-      console.log(e, 'before leave')
-    }
-  }
+  name: 'AppMain'
 }
 </script>

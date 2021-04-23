@@ -1,19 +1,19 @@
 .page-enter-active {
-  transition: all 0.6s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .page-enter-active h1 {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .page-enter-active h2 {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transition-delay: 0.15s;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition-delay: 0.2s;
 }
 
 .page-enter-active .t-content {
-  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-  transition-delay: 0.3s;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  transition-delay: 0.4s;
 }
 
 .page-enter h1,
@@ -28,13 +28,13 @@
 }
 
 .page-leave-active {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
   opacity: 0;
 }
 
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
 }
 
 .fade-enter,
@@ -45,34 +45,20 @@
 
 .drawer-enter-active,
 .drawer-leave-active {
-  transition: all 0.45s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .drawer-enter-active aside,
 .drawer-leave-active aside {
-  transition: opacity 0.3s ease-in-out;
-}
-
-.drawer-enter-active .content,
-.drawer-leave-active .content {
-  transition: transform 0.3s ease-in-out;
-  transition-delay: 0.15s;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 
 .drawer-enter aside {
   opacity: 0;
+  transform: translateY(100%);
 }
 
 .drawer-leave-to aside {
   opacity: 0;
-  transition-delay: 0.15s;
-}
-
-.drawer-enter .content {
-  transform: translateX(-100%);
-}
-
-.drawer-leave-to .content {
-  transform: translateX(-100%);
-  transition-delay: 0s;
+  transform: translateY(100%);
 }

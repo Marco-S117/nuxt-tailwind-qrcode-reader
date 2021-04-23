@@ -58,5 +58,17 @@ export default {
   pageTransition: {
     name: 'page',
     mode: 'out-in'
+  },
+
+  // Preloader and page loading
+  loadingIndicator: {
+    name: 'three-bounce',
+    color: '#DC2626',
+    background: '#111827'
+  },
+
+  loading: {
+    color: '#DC2626',
+    height: '4px',
   }
 }

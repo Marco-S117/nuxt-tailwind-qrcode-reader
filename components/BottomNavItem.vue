@@ -1,26 +1,30 @@
 <template>
-  <component
-    v-on="$listeners"
-    :is="isBtn ? 'button' : 'router-link'"
-    :to="isBtn ? null : to"
-    exact-active-class="active"
+  <button
+    @click="onClick"
+    :class="{ 'active': active }"
     class="bottom-nav-item transition duration-300"
   >
     <component :is="iconSvg" class="transition duration-300" />
-  </component>
+  </button>
 </template>
 
 <script>
 export default {
   name: 'BottomNavItem',
   props: {
-    isBtn: { type: Boolean, default: false },
-    to: { type: [String, Object] },
-    icon: { type: String, required: true }
+    to: { type: Object },
+    icon: { type: String, required: true },
+    active: { type: Boolean, default: false }
   },
   computed: {
     iconSvg () {
       return require('@/components/icons/' + this.icon).default
+    }
+  },
+  methods: {
+    onClick () {
+      if (this.to) this.$router.push(this.to)
+      this.$emit('on-click')
     }
   }
 }
@@ -28,7 +32,7 @@ export default {
 
 <style scoped>
 .bottom-nav-item {
-  width: 25%;
+  width: 33%;
   height: 100%;
   position: relative;
 }
@@ -47,7 +51,7 @@ export default {
 }
 
 .bottom-nav-item.active svg {
-  transform: translate(-50%, -50%) scale(1.1);
+  transform: translate(-50%, -50%) scale(1.05);
   fill: rgba(220, 38, 38, 1);
 }
 </style>
