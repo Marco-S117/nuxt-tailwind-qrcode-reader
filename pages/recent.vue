@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">Latest</h1>
-    <h2 class="sticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12 shadow-lg">Recently scanned</h2>
+    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">{{ $t('pages.recent.title') }}</h1>
+    <h2 class="sticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12 shadow-lg">{{ $t('pages.recent.subtitle') }}</h2>
     <div class="t-content text-sm px-4">
       <transition name="fade" mode="out-in" appear>
         <div v-show="!!(cookies && cookies.length)" class="relative">

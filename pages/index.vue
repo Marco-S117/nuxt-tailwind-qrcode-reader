@@ -1,14 +1,13 @@
 <template>
   <div>
-    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">Scan</h1>
-    <h2 class="ticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12">Capture the code</h2>
+    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">{{ $t('pages.index.title') }}</h1>
+    <h2 class="ticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12">{{ $t('pages.index.subtitle') }}</h2>
     <div class="t-content flex items-center justify-center">
       <div class="scanner-container border-4 border-red-600 rounded-xl">
         <qrcode-stream
           v-if="!isDestroyed"
           :track="paintTrack"
           :camera="camera"
-          :torch="isTorchActive"
           @init="onScannerInit"
           @decode="onScannerDecode"
         >
@@ -23,19 +22,19 @@
               <cta
                 v-if="isErrored"
                 @click="reloadScanner()"
-                label="Reload"
+                :label="$i18n.messages[$i18n.locale].words.reload"
                 :isBtn="true"
               />
               <cta
                 v-if="!!scannedUrl"
                 @click="scanAgain"
-                label="Scan Again"
+                :label="$i18n.messages[$i18n.locale].words.again"
                 :isBtn="true"
                 :secondary="true"
               />
               <cta
                 v-if="!!scannedUrl"
-                label="Open Url"
+                :label="$i18n.messages[$i18n.locale].words.open"
                 :to="scannedUrl"
               />
           </div>
@@ -53,7 +52,6 @@ export default {
   data () {
     return {
       camera: 'auto',
-      isTorchActive: false,
       isDestroyed: false,
       isLoading: false,
       isErrored: false,
@@ -61,23 +59,28 @@ export default {
       errorMsg: null
     }
   },
-  mounted () {
-    this.$nuxt.$on('toggle-option', (option) => {
-      if (option === 'Torch') this.isTorchActive = !this.isTorchActive
-    })
-  },
   methods: {
     setCookie,
     async onScannerInit (promise) {
       this.isLoading = true
       try {
         const { capabilities } = await promise
-        if (!capabilities.torch) this.$nuxt.$emit('disable-option', 'camera', 'Torch')
       } catch (error) {
-        this.errorMsg = error.message
+        if (error.name === 'NotAllowedError') {
+          this.errorMsg = this.$t('qrErrors.notAllowed')
+        } else if (error.name === 'NotFoundError') {
+          this.errorMsg = this.$t('qrErrors.notFound')
+        } else if (error.name === 'NotSupportedError') {
+          this.errorMsg = this.$t('qrErrors.notSupported')
+        } else if (error.name === 'NotReadableError') {
+          this.errorMsg = this.$t('qrErrors.notReadable')
+        } else if (error.name === 'OverconstrainedError') {
+          this.errorMsg = this.$t('qrErrors.overConstrained')
+        } else if (error.name === 'StreamApiNotSupportedError') {
+          this.errorMsg = this.$t('qrErrors.streamApiNotSupported')
+        }
         this.isErrored = true
         this.$nuxt.$emit('show-notification', { msg: this.errorMsg, type: 'error' })
-        this.$nuxt.$emit('disable-option', 'camera', 'Torch')
       } finally {
         this.isLoading = false
       }

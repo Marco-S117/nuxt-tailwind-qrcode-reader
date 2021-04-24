@@ -59,7 +59,29 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/nuxt-i18n
+    [
+      'nuxt-i18n', {
+        strategy: 'no_prefix',
+        defaultLocale: 'it',
+        langDir: '~/assets/locales',
+        locales: [
+          {
+            name: 'Italiano',
+            code: 'it',
+            iso: 'it-IT',
+            file: 'it.js'
+          },
+          {
+            name: 'English US',
+            code: 'en',
+            iso: 'en-UK',
+            file: 'en.js'
+          }
+        ]
+      }
+    ]
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -78,7 +100,7 @@ export default {
       display: 'standalone',
       background_color: '#111827',
       theme_color: '#dc2626',
-      lang: 'en',
+      lang: 'it',
       useWebmanifestExtension: false,
     },
     meta: {

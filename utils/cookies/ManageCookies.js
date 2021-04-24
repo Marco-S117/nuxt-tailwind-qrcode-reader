@@ -10,7 +10,7 @@ export const listCookies = () => {
   const cookiesArray = []
   document.cookie.split(';').reduce((cookies, cookie, index) => {
     const [timestamp, value] = cookie.split('=').map(c => c.trim())
-    if (timestamp && value) cookiesArray.push({ timestamp: Number(timestamp), value })
+    if (timestamp && !isNaN(timestamp) && value) cookiesArray.push({ timestamp: Number(timestamp), value })
   }, {})
   // if recent limit reached, delete first cookie
   if (cookiesArray.length > 10) {
