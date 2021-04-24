@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600">Scan</h1>
-    <h2 class="ticky top-28 pb-4 bg-white text-lg text-center italic mb-12">Capture the code</h2>
+    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">Scan</h1>
+    <h2 class="ticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12">Capture the code</h2>
     <div class="t-content flex items-center justify-center">
       <div class="scanner-container border-4 border-red-600 rounded-xl">
         <qrcode-stream

@@ -7,11 +7,12 @@
     :class="{
       'bg-red-600': (primary && !secondary) ? true : false,
       'bg-gray-600': secondary,
-      'small': small,
+      'small text-xs px-2': small,
+      'text-sm': !small,
       'squared': squared,
       'disabled': disabled
     }"
-    class="cta transition duration-300"
+    class="cta flex items-center justify-center uppercase tracking-wider transition duration-300"
   >
     <slot v-if="!!label">{{ label }}</slot>
     <component v-if="!!icon" :is="iconSvg" class="transition duration-300" />
@@ -44,26 +45,26 @@ export default {
 <style scoped>
 .cta {
   outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   line-height: 1;
-  text-transform: uppercase;
-  width: 120px;
-  height: 40px;
+  width: 110px;
+  height: 36px;
   color: #fff;
   border-radius: 0.5em;
 }
 
 .small {
-  width: 48px;
+  width: auto;
   height: 28px;
-  font-size: 12px;
 }
 
 .squared {
   width: 36px;
   height: 36px;
+}
+
+.squared.small {
+  width: 32px;
+  height: 32px;
 }
 
 .cta.disabled {

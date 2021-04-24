@@ -1,34 +1,65 @@
 <template>
   <div>
-    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600">Latest</h1>
-    <h2 class="sticky top-28 pb-4 bg-white text-lg text-center italic mb-12 shadow-lg">Recently scanned</h2>
+    <h1 class="sticky top-16 pt-4 bg-white text-3xl text-center uppercase text-red-600 tracking-wider">Latest</h1>
+    <h2 class="sticky top-28 pb-4 bg-white text-lg text-center tracking-wider mb-12 shadow-lg">Recently scanned</h2>
     <div class="t-content text-sm px-4">
-      <div v-if="!!(cookies && cookies.length)">
-        <div
-          v-for="(cookie, index) in cookies"
-          :key="index"
-          :class="{ 'mb-8': index < (cookies.length - 1) }"
-          class="flex items-center justify-between"
-        >
-          <div class="flex items-center">
-            <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div>
-            <span>{{ new Date(cookie.timestamp).toLocaleString() }}</span>
-          </div>
+      <transition name="fade" mode="out-in" appear>
+        <div v-show="!!(cookies && cookies.length)" class="relative">
+          <transition-group name="list-item" mode="out-in" tag="div" appear>
+            <div
+              v-for="(cookie, index) in cookies"
+              :key="'item' + index"
+              :class="{ 'mt-4': index > 0 }"
+              class="flex items-center justify-between"
+            >
+              <div class="flex items-center">
+                <div class="w-2 h-2 bg-red-600 rounded-full mr-4"></div>
+                <span>{{ new Date(cookie.timestamp).toLocaleString() }}</span>
+              </div>
+              <div class="flex items-center">
+                <cta
+                  @click="onDelete(cookie.timestamp)"
+                  :isBtn="true"
+                  :squared="true"
+                  :small="true"
+                  :secondary="true"
+                  icon="Delete"
+                />
+                <cta
+                  :to="cookie.value"
+                  :squared="true"
+                  :small="true"
+                  icon="ExternalLink"
+                  class="ml-2"
+                />
+              </div>
+            </div>
+          </transition-group>
+        </div>
+      </transition>
+      <transition name="fade" mode="out-in" appear>
+        <div v-show="!cookies.length" class="text-center w-full text-gray-600 pt-10">
+          <sad-emoji class="mx-auto" />
+          <h3 class="text-2xl tracking-wider mt-4 mb-2">There's nothing here</h3>
+          <p class="mb-4">Scanned codes remain stored in device cookies for a week.</p>
           <cta
-            label="Open"
-            :to="cookie.value"
+            @click="$router.push({ name: 'index' })"
+            :isBtn="true"
             :small="true"
+            label="Scan Now"
+            class="mx-auto"
           />
         </div>
-      </div>
-      <span v-else>No recent scanned</span>
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
-import { listCookies } from '@/utils/cookies/ManageCookies'
+import { listCookies, deleteCookie } from '@/utils/cookies/ManageCookies'
+import SadEmoji from '~/components/icons/SadEmoji.vue'
 export default {
+  components: { SadEmoji },
   name: 'RecentPage',
   data () {
     return {
@@ -36,7 +67,12 @@ export default {
     }
   },
   methods: {
-    listCookies
+    listCookies,
+    deleteCookie,
+    onDelete (cookie) {
+      this.deleteCookie(cookie)
+      this.cookies = this.listCookies()
+    }
   }
 }
 </script>

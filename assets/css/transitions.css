@@ -62,3 +62,18 @@
   opacity: 0;
   transform: translateY(100%);
 }
+
+.list-item-enter-active,
+.list-item-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.list-item-enter,
+.list-item-leave-to {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+

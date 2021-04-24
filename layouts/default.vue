@@ -1,5 +1,5 @@
 <template>
-  <div ref="app" class="fixed w-full h-full overflow-y-auto overflow-x-hidden bg-gradient-to-br from-gray-300 via-gray-100 to-gray-300 text-gray-100">
+  <div ref="app" class="fixed w-full h-full overflow-y-auto overflow-x-hidden bg-gradient-to-b from-gray-100 via-gray-200 to-gray-300 text-gray-100">
     <div class="overflow-x-hidden w-full min-h-full h-auto max-w-3xl mx-auto bg-white shadow-2xl">
       <app-header />
       <app-drawer />
