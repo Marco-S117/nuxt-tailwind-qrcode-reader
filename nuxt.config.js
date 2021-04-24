@@ -5,6 +5,17 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  // Live server config
+  server: {
+    port: 8080,
+    host: '0.0.0.0'
+  },
+
+  // Netlify
+  generate: {
+    fallback: true
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     noscript: [{ innerHTML: 'This website requires JavaScript.' }],
@@ -12,14 +23,14 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', property: 'description', name: 'description', content: 'OG description' },
+      { hid: 'description', property: 'description', name: 'description', content: 'Scan qr code with this pwa.' },
       { hid: 'author', property: 'author', name: 'author', content: 'Marco Polino' },
       { hid: 'og:type', property: 'og:type', name: 'og:type', content: 'website' },
-      { hid: 'og:site_name', property: 'og:site_name', name: 'og:site_name', content: 'Og Site name' },
-      { hid: 'og:title', property: 'og:title', name: 'og:title', content: 'Og Title' },
-      { hid: 'og:description', property: 'og:description', name: 'og:description', content: 'OG description' },
+      { hid: 'og:site_name', property: 'og:site_name', name: 'og:site_name', content: 'QR code reader' },
+      { hid: 'og:title', property: 'og:title', name: 'og:title', content: 'Nuxt QR code reader' },
+      { hid: 'og:description', property: 'og:description', name: 'og:description', content: 'Scan qr code with this pwa.' },
       { hid: 'og:image', property: 'og:image', name: 'og:image', content: 'og-image.jpg' },
-      { hid: 'og:url', property: 'og:url', name: 'og:url', content: 'OG Url' }
+      { hid: 'og:url', property: 'og:url', name: 'og:url', content: 'https://mp-qrcode-reader.netlify.app/' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -48,26 +59,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/nuxt-i18n
-    // [
-    //   'nuxt-i18n', {
-    //     strategy: 'no_prefix',
-    //     defaultLocale: 'it',
-    //     locales: [
-    //       {
-    //         name: 'Italiano',
-    //         code: 'it',
-    //         iso: 'it-IT'
-    //       },
-    //       {
-    //         name: 'English US',
-    //         code: 'en',
-    //         iso: 'en-UK'
-    //       }
-    //     ]
-    //   }
-    // ]
+    '@nuxtjs/pwa'
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -80,9 +72,9 @@ export default {
       purpose: ['any', 'maskable']
     },
     manifest: {
-      name: 'OG Site name',
-      short_name: 'Marco Polino Portfolio',
-      description: 'OG description',
+      name: 'Nuxt QR code reader',
+      short_name: 'QR code reader',
+      description: 'Scan qr code with this pwa.',
       display: 'standalone',
       background_color: '#111827',
       theme_color: '#dc2626',
@@ -98,15 +90,15 @@ export default {
       favicon: 'favicon.ico',
       name: 'Nuxt QR code reader',
       author: 'Marco Polino',
-      description: 'OG description',
+      description: 'Scan qr code with this pwa.',
       lang: 'it',
       ogType: 'website',
-      ogSiteName: 'Og Site name',
-      ogTitle: 'OG Title',
-      ogDescription: 'OG description',
-      ogHost: 'OG Url',
+      ogSiteName: 'QR code reader',
+      ogTitle: 'Nuxt QR code reader',
+      ogDescription: 'Scan qr code with this pwa.',
+      ogHost: 'https://mp-qrcode-reader.netlify.app/',
       ogImage: 'og-image.jpg',
-      ogUrl: 'OG Url'
+      ogUrl: 'https://mp-qrcode-reader.netlify.app/'
     },
     workbox: {
       // /* workbox options */
