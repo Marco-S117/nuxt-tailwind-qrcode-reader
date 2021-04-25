@@ -40,13 +40,13 @@
       <transition name="fade" mode="out-in" appear>
         <div v-show="!cookies.length" class="text-center w-full text-gray-600 pt-10">
           <sad-emoji class="mx-auto" />
-          <h3 class="text-2xl tracking-wider mt-4 mb-2">There's nothing here</h3>
-          <p class="mb-4">Scanned codes remain stored in device cookies for a week.</p>
+          <h3 class="text-2xl tracking-wider mt-4 mb-2">{{ $t('pages.recent.emptyStateTitle') }}</h3>
+          <p class="mb-4">{{ $t('pages.recent.emptyStateMessage') }}.</p>
           <cta
             @click="$router.push({ name: 'index' })"
             :isBtn="true"
             :small="true"
-            label="Scan Now"
+            :label="$i18n.messages[$i18n.locale].pages.recent.emptyStateCtaLabel"
             class="mx-auto"
           />
         </div>
@@ -72,6 +72,7 @@ export default {
     onDelete (cookie) {
       this.deleteCookie(cookie)
       this.cookies = this.listCookies()
+      this.$nuxt.$emit('show-notification', { msg: this.$t('notification.itemDeleted'), type: 'success' })
     }
   }
 }

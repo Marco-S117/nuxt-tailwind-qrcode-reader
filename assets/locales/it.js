@@ -14,14 +14,17 @@ export default {
     overConstrained: "La fotocamera non è supportata",
     streamApiNotSupported: "Dispositivo non supportato"
   },
+  notification: {
+    itemDeleted: 'Un elemento è stato eliminato'
+  },
   pages: {
     index: {
       title: "Scansiona",
       subtitle: "Inquadra il codice"
     },
     recent: {
-      title: "Ultimi",
-      subtitle: "Scansionati di recente",
+      title: "Recenti",
+      subtitle: "Scansionati da poco",
       emptyStateTitle: "Qui non c'è niente",
       emptyStateMessage: "I codici scansionati rimangono memorizzati nei cookie del dispositivo per una settimana.",
       emptyStateCtaLabel: "Scansiona adesso"

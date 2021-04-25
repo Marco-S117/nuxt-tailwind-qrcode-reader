@@ -14,6 +14,9 @@ export default {
     overConstrained: "The camera is not suitable",
     streamApiNotSupported: "The device is not supported"
   },
+  notification: {
+    itemDeleted: 'An item was deleted'
+  },
   pages: {
     index: {
       title: "Scan",

@@ -1,7 +1,12 @@
 <template>
   <transition name="notify" mode="out-in" appear>
-    <div v-if="!!notification" :class="(type)" class="notify">
-      <span class="block">{{ notification }}</span>
+    <div
+      v-if="!!notification"
+      :key="notification.msg"
+      :class="(notification.type)"
+      class="notify"
+    >
+      <span class="block">{{ notification.msg }}</span>
     </div>
   </transition>
 </template>
@@ -12,42 +17,28 @@ export default {
 
   data () {
     return {
-      type: null,
-      notification: null
+      notification: {}
     }
   },
 
   mounted () {
     this.$nuxt.$on('show-notification', (notification) => {
-      this.type = notification.type
-      this.notification = notification.msg
+      this.notification = notification
       setTimeout(() => {
-        this.type = null
         this.notification = null
-      }, 4000)
+      }, 3500)
     })
   }
 }
 </script>
 
 <style>
-.notify-enter-active,
-.notify-leave-active {
-  transition: all 0.4s ease-in-out;
-}
-
-.notify-enter,
-.notify-leave-to {
-  opacity: 0;
-  transform: translate(50%, 20px) !important;
-}
-
 .notify {
   width: 100%;
   max-width: 350px;
   color: #fff;
   text-align: center;
-  padding: 4px 6px;
+  padding: 6px 12px;
   border-radius: 8px;
   position: absolute;
   bottom: 100px;

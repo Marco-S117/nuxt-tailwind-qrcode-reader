@@ -76,4 +76,15 @@
   transform: translateX(-10px);
 }
 
+.notify-enter-active,
+.notify-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+
+.notify-enter,
+.notify-leave-to {
+  opacity: 0;
+  transform: translate(50%, 10px) !important;
+}
+
 

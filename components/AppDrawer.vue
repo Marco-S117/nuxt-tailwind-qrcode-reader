@@ -6,12 +6,18 @@
         <div class="absolute top-0 left-0 w-full h-full py-16 px-4">
           <div class="mt-6">
             <h4 class="text-gray-300 text-md uppercase tracking-wider mb-4">{{ $t('words.lang') }}</h4>
-            <cta
-              @click="$i18n.setLocale($i18n.locale === 'it' ? 'en' : 'it')"
-              :isBtn="true"
-              :label="$i18n.locale === 'it' ? 'en' : 'it'"
-              :squared="true"
-            />
+            <div class="flex items-ceneter">
+              <cta
+                @click="$i18n.setLocale(lang.code)"
+                v-for="(lang, index) in $i18n.locales"
+                :key="index"
+                :label="lang.code"
+                :isBtn="true"
+                :squared="true"
+                :secondary="lang.code !== $i18n.locale"
+                :class="{ 'ml-2': index > 0 }"
+              />
+            </div>
           </div>
           <div class="mt-6">
             <h4 class="text-gray-300 text-md uppercase tracking-wider mb-4">{{ $t('words.credits') }}</h4>
@@ -58,14 +64,6 @@ export default {
   },
   mounted () {
     this.$nuxt.$on('toggle-drawer', () => { this.isOpen = !this.isOpen })
-  },
-  methods: {
-    toggleOption (option, name, index) {
-      console.log(option, name, index)
-    }
   }
 }
 </script>
-
-<style scoped>
-</style>
