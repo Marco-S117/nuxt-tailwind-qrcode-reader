@@ -6,11 +6,13 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "nuxt generate && firebase deploy"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
+    "firebase": "^9.2.0",
     "nuxt": "^2.15.3",
     "nuxt-i18n": "^6.26.0",
     "vue-qrcode-reader": "^2.3.18"
